@@ -1,15 +1,14 @@
-'use client'
-
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, Zap, FlaskConical, Loader2 } from "lucide-react"
-import { notFound } from "next/navigation"
+import { Arrowimport { ArrowLeft, Zap, FlaskConical, Loader as Loader2 } from "lucide-react"ound } from "next/navigation"
 import { useState } from 'react'
 import OhmsLaw from '@/components/experiments/ohms-law'
 import AcidBase from '@/components/experiments/acid-base'
 import Quiz from '@/components/quiz'
+
+'use client'
 
 const experiments = {
   "ohms-law": {
@@ -36,25 +35,17 @@ interface ExperimentPageProps {
   params: Promise<{ id: string }>
 }
 
-export default function ExperimentPage({ params }: ExperimentPageProps) {
-  const [id, setId] = useState<string>('')
+export default async function ExperimentPage({ params }: ExperimentPageProps) {
+  const { id } = await params
   const [explanation, setExplanation] = useState<any>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  // Handle async params
-  useState(() => {
-    params.then(p => setId(p.id))
-  })
-
+  // This needs to be a client component, so we'll move the async logic
   const experiment = experiments[id as keyof typeof experiments]
 
-  if (id && !experiment) {
+  if (!experiment) {
     notFound()
-  }
-
-  if (!id || !experiment) {
-    return <div>Loading...</div>
   }
 
   const IconComponent = experiment.icon
