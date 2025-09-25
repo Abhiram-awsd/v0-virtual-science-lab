@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, XCircle } from 'lucide-react'
+import { CircleCheck as CheckCircle, Circle as XCircle } from 'lucide-react'
 
 interface QuizQuestion {
   q: string
