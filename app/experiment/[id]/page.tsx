@@ -2,7 +2,8 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Arrowimport { ArrowLeft, Zap, FlaskConical, Loader as Loader2 } from "lucide-react"ound } from "next/navigation"
+import { ArrowLeft, Zap, FlaskConical, Loader as Loader2 } from "lucide-react"
+import { notFound } from "next/navigation"
 import { useState } from 'react'
 import OhmsLaw from '@/components/experiments/ohms-law'
 import AcidBase from '@/components/experiments/acid-base'
