@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -8,8 +10,6 @@ import { useState } from 'react'
 import OhmsLaw from '@/components/experiments/ohms-law'
 import AcidBase from '@/components/experiments/acid-base'
 import Quiz from '@/components/quiz'
-
-'use client'
 
 const experiments = {
   "ohms-law": {
