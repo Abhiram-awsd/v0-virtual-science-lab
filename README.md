@@ -1,32 +1,43 @@
 # Virtual Science Lab
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+Interactive virtual science experiments — Ohm's Law circuits, acid-base pH indicators, instant explanations, and quizzes. Works offline; AI enhances it when `OPENAI_API_KEY` is set.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/m14576592-6734s-projects/v0-virtual-science-lab)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/LwSyiXfA77h)
+## Features
 
-## Overview
+- 2 interactive simulations (Ohm's Law with p5.js circuit, pH beaker with live indicator)
+- Theory cards, live readings, Run & Explain flow
+- `/api/explain` with OpenAI (`gpt-4o-mini`) + automatic offline fallback lessons and quizzes
+- Knowledge-check quizzes with scoring
+- Production-ready: SEO metadata, sitemap/robots/manifest, loading/error/404 states, responsive dark UI
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+## Getting started
 
-## Deployment
+```bash
+npm install
+npm run dev      # http://localhost:3000
+```
 
-Your project is live at:
+Optional AI (otherwise offline lessons are used):
 
-**[https://vercel.com/m14576592-6734s-projects/v0-virtual-science-lab](https://vercel.com/m14576592-6734s-projects/v0-virtual-science-lab)**
+```bash
+cp .env.example .env   # then set OPENAI_API_KEY
+```
 
-## Build your app
+## Scripts
 
-Continue building your app on:
+- `npm run dev` — local dev server
+- `npm run build` — production build
+- `npm run start` — serve production build
+- `npm run typecheck` — TypeScript check
 
-**[https://v0.app/chat/projects/LwSyiXfA77h](https://v0.app/chat/projects/LwSyiXfA77h)**
+## Deploy
 
-## How It Works
+Optimized for Vercel (`next build`). No env vars required; add `OPENAI_API_KEY` in Vercel project settings to enable AI explanations.
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+## Project structure
 
-    <---The End--->
+- `app/` — routes (`/`, `/experiment/[id]`, `/api/explain`), layout, SEO files
+- `components/experiments/` — `ohms-law.tsx`, `acid-base.tsx`
+- `components/quiz.tsx` — reusable quiz
+- `lib/experiments.ts` — experiment catalog + offline fallback content
+- `lib/p5-wrapper.tsx` — p5 lifecycle wrapper
